@@ -17,14 +17,16 @@ $this->menu=array(
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
 	'dataProvider' => $model->search(),
-	'filter' => $model,
 	'columns' => [
 		'title',
 		'date',
 		'text',
 		'theme_id' => [
 			'value' => '$data->theme->theme_title'
-		]
+		],
+		[
+			'class' => 'CButtonColumn',
+		],
 	]
 ));
 ?>

@@ -58,11 +58,11 @@ class News extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'news_id' => 'News',
-			'date' => 'Date',
-			'theme_id' => 'Theme',
-			'text' => 'Text',
-			'title' => 'Title',
+			'news_id' => 'Новость',
+			'date' => 'Дата',
+			'theme_id' => 'Тема',
+			'text' => 'Содержание',
+			'title' => 'Заголовок',
 		);
 	}
 
