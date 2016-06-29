@@ -1,0 +1,6 @@
+vendor/
+web/assets/*
+!web/assets/.gitignore
+protected/runtime/*
+!protected/runtime/.gitignore
+.idea

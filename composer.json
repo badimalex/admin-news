@@ -1,0 +1,12 @@
+{
+    "name": "badichan/test-task",
+    "require": {
+        "yiisoft/yii": "^1.1"
+    },
+    "authors": [
+        {
+            "name": "Badichan Dmitriy",
+            "email": "badimalex@gmail.com"
+        }
+    ]
+}
