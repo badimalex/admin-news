@@ -84,12 +84,12 @@ class News extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('news_id',$this->news_id);
-		$criteria->compare('date',$this->date,true);
-		$criteria->compare('theme_id',$this->theme_id);
-		$criteria->compare('text',$this->text,true);
-		$criteria->compare('title',$this->title,true);
-
+		$criteria->compare('news_id', $this->news_id);
+		$criteria->compare('date', $this->date,true);
+		$criteria->compare('theme_id', $this->theme_id);
+		$criteria->compare('text', $this->text,true);
+		$criteria->compare('title', $this->title,true);
+		$criteria->compare('YEAR(date)', $this->date);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'sort'=>array(

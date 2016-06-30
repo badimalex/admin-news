@@ -13,18 +13,12 @@ class DefaultController extends Controller
 
 	public function actionIndex()
 	{
-		$news = Yii::app()->db->createCommand("select Year(date) as year, Month(date) as month,  count(*) as count from news group by MONTH(date) order by year DESC")->queryAll();
-		$list=[];
-
-		foreach ($news as $i) {
-			$list[$i['year']][]=$i;
+		$model = new News('search');
+		if(!empty($_GET['date'])) {
+			$model->date = $_GET['date'];
 		}
-
-		$dataProvider=new CActiveDataProvider('News');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-			'list'=>$list
-		));
+		$model = $model->search()->getData();
+		$this->render('index', compact('model'));
 	}
 
 	public function loadModel($id)
