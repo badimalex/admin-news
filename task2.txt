@@ -59,3 +59,22 @@ left join claim c on c.manager_id=m.id
 group by m.id
 order by claim_count ASC
 limit 2
+
+Задание 4.
+SELECT  m1.*, count(c1.id) as claim_count FROM `manager` m1
+left join claim c1 on c1.manager_id=m1.id
+group by m1.id
+HAVING claim_count > (select count(c2.id) as claim_count from claim c2
+left join manager m2 on c2.manager_id=m2.id
+where m2.id=(select chief_id from manager where id=m1.id))
+
+Задание 5.
+SELECT CONCAT(MONTHNAME(created_at)," ", YEAR(created_at)) as formatted_date, count(id) as claim_count, sum(sum) as claim_total_sum from claim
+GROUP BY MONTH(created_at)
+
+Задание 6.
+SELECT  m.*, avg(sum) as avg_sum FROM `manager` m
+left join claim c on c.manager_id=m.id
+where MONTH(created_at)=7
+group by m.id
+order by avg_sum DESC
