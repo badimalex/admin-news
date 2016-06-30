@@ -35,7 +35,7 @@ $this->breadcrumbs=array(
 </div>
 <div class="span-19">
     <div id="content">
-        <?php foreach ($model as $post):?>
+        <?php foreach ($posts->getData() as $post):?>
             <h4><?= $post->title?></h4>
             <p><?= $post->date?>, <?= $post->theme->theme_title?></p>
             <p>
@@ -43,5 +43,8 @@ $this->breadcrumbs=array(
                 <?= CHtml::link('читать далее', $this->createUrl($this->id.'/view',['id' => $post->news_id])); ?>
             </p>
         <?php endforeach; ?>
+        <?php $this->widget('CLinkPager', array(
+            'pages' => $posts->pagination,
+        ))?>
     </div><!-- content -->
 </div>

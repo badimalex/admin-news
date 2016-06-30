@@ -90,14 +90,19 @@ class News extends CActiveRecord
 		$criteria->compare('text', $this->text,true);
 		$criteria->compare('title', $this->title,true);
 		$criteria->compare('YEAR(date)', $this->date);
+
+		$count = $this->count($criteria);
+		$pages = new CPagination($count);
+		$pages->pageSize = 5;
+		$pages->applyLimit($criteria);
+
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'sort'=>array(
 				'defaultOrder'=>'date DESC',
 			),
-			'pagination'=>array(
-				'pageSize'=>5
-			),
+			'pagination'=>$pages,
 		));
 	}
 

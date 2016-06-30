@@ -17,8 +17,8 @@ class DefaultController extends Controller
 		if(!empty($_GET['date'])) {
 			$model->date = $_GET['date'];
 		}
-		$model = $model->search()->getData();
-		$this->render('index', compact('model'));
+		$posts = $model->search();
+		$this->render('index', compact('posts'));
 	}
 
 	public function loadModel($id)

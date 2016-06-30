@@ -16,15 +16,19 @@ $this->menu=array(
 );
 ?>
 
-<h1>View News #<?php echo $model->news_id; ?></h1>
+<h1><?php echo $model->title; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'news_id',
 		'date',
-		'theme_id',
+		'theme_id' => [
+			'label'=>'Тема',
+			'value'=>$model->theme->theme_title
+		],
 		'text',
 		'title',
 	),
 )); ?>
+<?= CHtml::link('Все новости', $this->createUrl($this->id.'/index'))?>
