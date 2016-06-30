@@ -1,0 +1,61 @@
+Задание 1. 
+--
+-- Table structure for table `authors`
+--
+
+CREATE TABLE IF NOT EXISTS `authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `text` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts_authors`
+--
+
+CREATE TABLE IF NOT EXISTS `posts_authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `author_id` (`author_id`,`post_id`),
+  KEY `post_id` (`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `posts_authors`
+--
+ALTER TABLE `posts_authors`
+  ADD CONSTRAINT `posts_authors_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`),
+  ADD CONSTRAINT `posts_authors_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
+
+Задание 2. 
+SELECT  m.*, count(c.id) as claim_count, sum(sum) as claim_total_sum FROM `manager` m
+left join claim c on c.manager_id=m.id
+group by m.id
+
+Задание 3. 
+SELECT  CONCAT(first_name, " ", last_name) as full_name, count(c.id) as claim_count FROM `manager` m
+left join claim c on c.manager_id=m.id
+group by m.id
+order by claim_count ASC
+limit 2
