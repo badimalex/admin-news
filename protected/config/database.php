@@ -1,5 +1,6 @@
 <?php
-if ($_SERVER['SERVER_NAME'] == "frozen-fjord-31334.herokuapp.com") {
+$local = file_exists(__DIR__.'/.local');
+if (!$local) {
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $dbname = substr($url["path"], 1);
     $config = array(
