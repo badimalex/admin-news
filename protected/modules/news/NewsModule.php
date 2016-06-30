@@ -11,6 +11,7 @@ class NewsModule extends CWebModule
 		$this->setImport(array(
 			'news.models.*',
 			'news.components.*',
+			'news.queries.*',
 		));
 	}
 
