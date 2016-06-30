@@ -27,7 +27,7 @@ $this->breadcrumbs=array(
         <?php if(!empty($_GET['date'])): ?>
             <ul>
                 <?php foreach(NewsRepository::getGroupedThemesByYear($_GET['date']) as $theme):?>
-                    <li><a href="#"><?= $theme['theme_title']?> (<?= $theme['count']?>)</a></li>
+                    <li><a href="<?= $this->createUrl($this->id.'/index',['theme_id' => $theme['theme_id']])?>"><?= $theme['theme_title']?> (<?= $theme['count']?>)</a></li>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>

@@ -14,9 +14,9 @@ class DefaultController extends Controller
 	public function actionIndex()
 	{
 		$model = new News('search');
-		if(!empty($_GET['date'])) {
-			$model->date = $_GET['date'];
-		}
+
+		$this->setSearchParams(['date', 'theme_id'], $model);
+
 		$posts = $model->search();
 		$this->render('index', compact('posts'));
 	}
@@ -27,6 +27,14 @@ class DefaultController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+
+	function setSearchParams($params, $model) {
+		foreach ($params as $param) {
+			if(!empty($_GET[$param])) {
+				$model->$param = $_GET[$param];
+			}
+		}
 	}
 
 }

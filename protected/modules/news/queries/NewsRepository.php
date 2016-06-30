@@ -24,14 +24,15 @@ class NewsRepository
 
     static function getGroupedThemesByYear($year)
     {
-        $sql = "SELECT theme_title,
+        $sql = "SELECT news.theme_id, 
+                       theme_title,
 					   count(*) as count
 				FROM news
 				LEFT JOIN themes ON news.theme_id=themes.theme_id
 				WHERE date LIKE :date
 				GROUP BY news.theme_id";
         $command = Yii::app()->db->createCommand($sql);
-        $date = "%" . $year . "%";
+        $date = "%" . substr($year, 0, 4) . "%";
         $command->bindParam(":date", $date, PDO::PARAM_STR);
         return $command->queryAll();
     }
